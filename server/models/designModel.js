@@ -1,15 +1,19 @@
 import mongoose from "mongoose";
-const DesignSchema = new mongoose.Schema({
-  figmaLink: {
-    type: String,
-    required: true,
+
+const DesignSchema = new mongoose.Schema(
+  {
+    figmaLink: {
+      type: String,
+      required: true,
+    },
+    githubLink: {
+      type: String,
+    },
   },
-  githubLink: {
-    type: String,
-  },
-});
+  { timestamps: true }
+);
 
 const designModel =
-  mongoose.model.design || mongoose.model("design", DesignSchema);
+  mongoose.models.design || mongoose.model("design", DesignSchema);
 
 export default designModel;

@@ -2,7 +2,6 @@ import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
-a
 function AuthButton() {
     const navigate = useNavigate()
   const handleSuccess = async (credentialResponse) => {
@@ -12,7 +11,6 @@ function AuthButton() {
         { token: credentialResponse.credential }
       );
         const {token , needsProfile} = res.data
-        console.log(res.data)
         localStorage.setItem('token',token)
         if(needsProfile){
             navigate('/complete-profile')
