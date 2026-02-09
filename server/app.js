@@ -4,6 +4,9 @@ import morgan from "morgan";
 import { errorHandler } from "./middlewares/error.middleware.js";
 import authRouter from "./routes/authRoute.js";
 import profileRouter from "./routes/profileUpdateRoute.js";
+import webDevRouter from "./routes/webDevRoute.js";
+import technicalRouter from "./routes/technicalRoute.js";
+import designRouter from "./routes/designRoute.js";
 
 const app = express();
 
@@ -14,7 +17,10 @@ app.use(morgan("dev"));
 // Routes can go here...
 
 app.use("/api/auth",authRouter)
-app.use("/api/auth",profileRouter)
+app.use("/api/profile",profileRouter)
+app.use("/api/webdev", webDevRouter);
+app.use("/api/technical", technicalRouter);
+app.use("/api/design", designRouter);
 
 
 app.use("/uploads", express.static("uploads"));
