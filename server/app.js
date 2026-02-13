@@ -6,11 +6,13 @@ import authRouter from "./routes/authRoute.js";
 import profileRouter from "./routes/profileUpdateRoute.js";
 import adminRouter from "./routes/applicationsRoute.js";
 import applications from "./routes/applicationsRoute.js";
+import chatbotRouter from "./routes/chatbotRoute.js";
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
 // Routes can go here...
@@ -18,6 +20,7 @@ app.use(morgan("dev"));
 app.use("/api/auth",authRouter)
 app.use("/api/auth",profileRouter)
 app.use("/api/auth",adminRouter)
+app.use("/api/chat",chatbotRouter)
 
 app.use("/api/admin",applications)
 
