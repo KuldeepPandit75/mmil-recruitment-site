@@ -3,6 +3,7 @@ import {ENV} from './env.js'
 
 
 export const connectDb = async ()=>{
+  console.log(ENV.MONGO_URI)
    try {
     if(!ENV.MONGO_URI){
         throw new Error("MONGO_URI not found")
