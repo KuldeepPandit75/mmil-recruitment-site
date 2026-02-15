@@ -7,7 +7,7 @@ function AuthButton() {
   const handleSuccess = async (credentialResponse) => {
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/google",
+        "https://mmil-recruitment-site.vercel.app/api/auth/google",
         { token: credentialResponse.credential }
       );
         const {token , needsProfile, userId} = res.data
