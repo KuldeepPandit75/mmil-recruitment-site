@@ -58,20 +58,20 @@ function Login() {
       </div>
 
       {/* Logo Placeholder */}
-<div className="w-full absolute top-0 left-0 flex justify-end items-center p-8 z-50">
+<div className="w-full absolute top-0 left-0 flex justify-end items-center p-8 z-50 ">
   
   {/* Logo */}
-  <div className="absolute left-1/2 -translate-x-1/2 top-8">
+  <div className="absolute left-1/2 -translate-x-1/2 top-8 ">
     <img
       src="/mmil-logo1.png"
       alt="MMIL Logo"
-      className="w-40 h-auto object-contain"
+      className="w-40 h-auto object-contain "
     />
   </div>
 </div>
 
 {/* 3. DECORATIVE ELEMENTS  */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none ">
         <div className="absolute flex flex-col items-center" style={{ top: "143px", right: "calc(50% - 620px)" }}>
           <img src="/light-bulb 1.png" alt="Bulb" className="w-[110px] h-auto object-contain z-20" />
           <div className="absolute top-[110px] right-[8%] z-0">
@@ -81,7 +81,7 @@ function Login() {
       </div>
 
 {/* 5. STAR DECORATIONS */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none ">
         <img src="/Vector 2.png" alt="Star" className="absolute w-[80px] h-auto" style={{ top: "40px", left: "calc(50% - 410px)", filter: "sepia(1) saturate(5) hue-rotate(-30deg)" }} />
         <img src="/Vector 2.png" alt="Star" className="absolute w-[80px] h-auto" style={{ top: "685px", left: "calc(50% - 500px)", filter: "sepia(1) saturate(5) hue-rotate(-30deg)" }} />
       </div>
