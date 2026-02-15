@@ -42,7 +42,7 @@ function Register() {
 
   return (
     /* Main Container */
-    <div className="relative h-screen w-full bg-[#FDF5E6] flex flex-col items-center justify-start font-montserrat overflow-hidden">
+    <div className="relative h-screen w-full bg-[#FDF5E6] flex flex-col items-center justify-start font-montserrat overflow-x-hidden overflow-y-auto">
 
       {/* BACKGROUND TEXT — always visible on all screens including mobile */}
       <div className="absolute inset-0 flex items-center justify-center select-none pointer-events-none overflow-visible">

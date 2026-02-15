@@ -39,7 +39,7 @@ function Login() {
 
   return (
     /* Main Container */
-    <div className="relative h-screen w-full bg-[#FDF5E6] flex flex-col items-center justify-start font-montserrat overflow-hidden">
+    <div className="relative h-screen w-full bg-[#FDF5E6] flex flex-col items-center justify-start font-montserrat overflow-x-hidden overflow-y-auto">
 
       {/* BACKGROUND TEXT — always visible on all screens including mobile */}
       <div className="absolute inset-0 flex items-center justify-center select-none pointer-events-none overflow-visible">
@@ -115,7 +115,7 @@ function Login() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full h-[50px] sm:h-[55px] bg-[#72341E] text-white rounded-xl font-bold text-base sm:text-lg shadow-lg active:scale-95 transition-all mb-4 sm:mb-6"
+              className="w-full h-[50px] sm:h-[55px] bg-[#72341E] text-white rounded-xl font-bold text-base sm:text-lg shadow   -lg active:scale-95 transition-all mb-4 sm:mb-6"
             >
               {loading ? "Logging in..." : "Login"}
             </button>
