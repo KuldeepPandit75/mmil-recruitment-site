@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { API_ENDPOINTS } from "../config/api.js";
 
 
 function Chatbot() {
@@ -42,11 +43,11 @@ function Chatbot() {
     const startConversation = async () => {
       try {
         console.log("Starting conversation with userId:", userId);
-        const res = await axios.post("http://localhost:5000/api/chat/chat", {
+        const res = await axios.post(API_ENDPOINTS.CHAT, {
           message: "Hello, I want to start my profile registration",
           userId: userId,
         });
-        
+
         setMessages([
           { role: "assistant", content: res.data.reply }
         ]);
@@ -85,15 +86,15 @@ function Chatbot() {
 
     try {
       let res;
-      
+
       if (resumeFile) {
         // Handle resume upload
         const formData = new FormData();
         formData.append("resume", resumeFile);
         formData.append("userId", userId);
-        
+
         res = await axios.post(
-          "http://localhost:5000/api/chat/upload-resume",
+          API_ENDPOINTS.UPLOAD_RESUME,
           formData,
           {
             headers: {
@@ -102,13 +103,13 @@ function Chatbot() {
             }
           }
         );
-        
+
         setMessages(prev => [...prev, { role: "user", content: "📄 Resume uploaded" }]);
         setResumeFile(null);
         setShowResumeUpload(false);
       } else {
         // Regular chat message
-        res = await axios.post("http://localhost:5000/api/chat/chat", {
+        res = await axios.post(API_ENDPOINTS.CHAT, {
           message: userMessage,
           userId: userId,
         });
@@ -123,8 +124,8 @@ function Chatbot() {
 
       // Check if profile is complete
       if (res.data.profileComplete) {
-        toast.success("Profile completed successfully!");
-        setTimeout(() => navigate("/"), 2000);
+        toast.success("Registration and profile completed");
+        setTimeout(() => navigate("/"), 2500);
       }
 
       // Show updated fields notification
@@ -140,7 +141,7 @@ function Chatbot() {
       if (assistantReply.toLowerCase().includes("resume") || assistantReply.toLowerCase().includes("upload")) {
         setShowResumeUpload(true);
       }
-      
+
       // Check if format examples are mentioned and show them in UI
       if (assistantReply.includes("24cseaiml043") || assistantReply.includes("2500935001")) {
         // Format guidance is already in the message
@@ -227,7 +228,7 @@ function Chatbot() {
                   </div>
                 </div>
               ))}
-              
+
               {isLoading && (
                 <div className="flex justify-start">
                   <div className="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg">
@@ -239,10 +240,10 @@ function Chatbot() {
                   </div>
                 </div>
               )}
-              
+
               <div ref={messagesEndRef} />
             </div>
-            
+
             <div className="border-t p-4">
               {showResumeUpload && (
                 <div className="mb-4 p-3 bg-blue-50 rounded-lg">
@@ -258,7 +259,7 @@ function Chatbot() {
                   )}
                 </div>
               )}
-              
+
               <form onSubmit={handleSendMessage} className="flex space-x-2">
                 <input
                   ref={inputRef}
