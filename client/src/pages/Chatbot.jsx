@@ -193,7 +193,7 @@ function Chatbot() {
     <>
       <div className="h-dvh bg-[#FDF5E6] flex flex-col items-center p-2 sm:p-4 font-sans relative overflow-hidden gap-2">
         {/* Logo */}
-        <div className="scale-80 sm:scale-100 relative top-2 sm:top-10">
+        <div className="scale-80 sm:scale-100 relative top-16 sm:top-10">
           <img
             src="/mmil-logo1.png"
             alt="MMIL Logo"
