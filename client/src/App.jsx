@@ -8,9 +8,11 @@ import Register from "./pages/Register";
 import PublicRoute from "./components/PublicRoute";
 // import AdminPage from "./pages/AdminPage";
 // import DomainStudents from "./pages/DomainStudents";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
+import { API_ENDPOINTS } from "./config/api";
 
 /* Splash Screen Component  */
 
@@ -143,15 +145,83 @@ const App = () => {
     return () => clearTimeout(timer);
   }, []);
 
+
   // Start button click
   const handleStart = () => {
     setStage("website");
   };
+
+  const location = useLocation();
+
   useEffect(() => {
     if (stage === "website") {
-      navigate("/");
+      const checkAuth = async () => {
+        const token = localStorage.getItem("token");
+        if (!token) return;
+
+        try {
+          const res = await axios.get(API_ENDPOINTS.CHECK_STATUS, {
+            headers: { Authorization: `Bearer ${token}` }
+          });
+
+          if (res.data.needsProfile) {
+            if (location.pathname !== "/complete-profile") {
+              navigate("/complete-profile");
+            }
+          }
+        } catch (error) {
+          console.error("Auth check failed:", error);
+          // Optional: clear token if invalid? 
+          // localStorage.removeItem("token");
+        }
+      };
+
+      checkAuth();
+      // If we are already on website stage, we might just be landing there directly (e.g. refresh)
+      // But actually, this app has a splash screen on every reload due to stage="splash" initial state.
+      // Wait, if users refresh, they see splash again. 
+      // The current logic:
+      // 1. Splash (2s) -> StartScreen
+      // 2. Click Start -> Website
+
+      // If user refreshes on /complete-profile, they see splash, then start screen, then website.
+      // Once on website, we check auth.
+
+      // But wait, the navigate("/") in the original code:
+      // useEffect(() => {
+      //   if (stage === "website") {
+      //     navigate("/");
+      //   }
+      // }, [stage]);
+      // This forces navigation to "/" whenever stage becomes "website".
+      // This is the bug! It overrides the current URL or where we want to go.
     }
-  }, [stage]);
+  }, [stage]); // checking authentication status whenever stage changes to website
+
+  // Remove the forcing to "/" on stage change if we want to preserve URL or handle redirects manually.
+  // The original code had:
+  // useEffect(() => {
+  //   if (stage === "website") {
+  //     navigate("/");
+  //   }
+  // }, [stage]);
+
+  // We should remove this entirely or modify it.
+  // If I remove it, what happens? 
+  // If I reload on /complete-profile:
+  // Splash -> Start -> Click Start -> setStage("website").
+  // If no navigation happens, where does it render?
+  // The Routes are rendered. React Router should handle the URL.
+  // BUT, if I am on /complete-profile and I refresh.
+  // The URL is /complete-profile.
+  // Splash renders. Start renders.
+  // I click Start. stage becomes "website".
+  // Routes render. matching /complete-profile.
+  // So it should work WITHOUT the explicit navigate("/").
+  // The explicit navigate("/") was likely resetting to home.
+
+  // So I will REPLACE that useEffect with my auth check logic, AND remove the navigate("/") call.
+
   return (
     <>
       {/* Splash Screen */}

@@ -234,10 +234,25 @@ const logout = async (req, res) => {
   }
 };
 
+const checkAuthStatus = async (req, res) => {
+  try {
+    const user = await userModel.findById(req.user.id);
+    if (!user) return res.status(404).json({ message: "User not found" });
+    res.json({
+      userId: user._id,
+      isProfileComplete: user.isProfileComplete,
+      needsProfile: !user.isProfileComplete
+    });
+  } catch (err) {
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
 export {
   googleAuth,
   registerWithEmail,
   loginWithEmail,
   completeProfile,
-  logout
+  logout,
+  checkAuthStatus
 };
