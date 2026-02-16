@@ -49,7 +49,7 @@ const Home = () => {
         <img
           src="/mmil-logo1.png"
           alt="MMIL Logo"
-          className="w-24 sm:w-32 md:w-40 h-auto absolute left-1/2 transform -translate-x-1/2 top-6 md:top-8"
+          className="w-32 md:w-40 h-auto absolute left-1/2 transform -translate-x-1/2 top-6 md:top-8"
         />
 
 

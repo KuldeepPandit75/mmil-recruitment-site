@@ -18,20 +18,12 @@ const SplashScreen = () => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#FDF5E6]">
-      <div className="relative w-[429px] h-[429px] animate-fade-in">
+      <div className="relative w-[80vw] max-w-[429px] h-[429px] animate-fade-in">
         <img
-          src="splash-img.png"
+          src="splash-img2.png"
           alt="Robot Background"
           className="w-full h-full object-contain"
         />
-
-        <div className="absolute top-[58%] left-1/2 -translate-x-1/2 w-[297px]">
-          <img
-            src="mmil-logo1.png"
-            alt="Microsoft Mobile Innovation Lab"
-            className="w-full h-auto"
-          />
-        </div>
       </div>
     </div>
   );
@@ -96,7 +88,7 @@ const StartScreen = ({ onStart }) => {
       </div>
 
       {/* TOP LOGO */}
-      <div className="absolute top-[-10px] left-[45%]">
+      <div className="absolute top-[-10px] left-1/2 -translate-x-1/2">
         <img
           src="/mmil-logo1.png"
           alt="MMIL Logo"
@@ -105,7 +97,7 @@ const StartScreen = ({ onStart }) => {
       </div>
 
       {/*  MAIN CARD  */}
-      <div className="z-10 bg-[#FFDED3] w-[475px] h-[398px] rounded-[15px] shadow-sm text-center flex flex-col items-center justify-center border border-[#FFFFFF]/70">
+      <div className="z-10 bg-[#FFDED3] w-[85vw] max-w-[475px] h-[398px] rounded-[15px] shadow-sm text-center flex flex-col items-center justify-center border border-[#FFFFFF]/70">
 
         <h2 className="text-[48px] font-black text-gray-900 mb-1">
           MMIL

@@ -42,8 +42,8 @@ function Login() {
     <div className="relative h-screen w-full bg-[#FDF5E6] flex flex-col items-center justify-start font-montserrat overflow-x-hidden overflow-y-auto">
 
       {/* BACKGROUND TEXT — always visible on all screens including mobile */}
-      <div className="absolute inset-0 flex items-center justify-center select-none pointer-events-none overflow-visible">
-        <div className="flex flex-col items-center opacity-20" style={{ width: "100vw" }}>
+      <div className="absolute inset-0 flex items-center justify-center select-none pointer-events-none overflow-visible mt-10 sm:mt-0">
+        <div className="flex flex-col scale-150 sm:scale-0 gap-[80px] sm:gap-0 items-center opacity-20" style={{ width: "100vw" }}>
           {["Inspire", "Invent", "Innovate"].map((word, i) => (
             <h1
               key={i}
@@ -52,6 +52,7 @@ function Login() {
                 WebkitTextStroke: "1px #72341E",
                 fontSize: "clamp(3.2rem, 22vw, 11.3rem)",
                 marginTop: i === 0 ? 0 : "-0.06em",
+                // marginBottom: work === "Invent" ? "60px" : "0",
               }}
             >
               {word}
@@ -59,6 +60,7 @@ function Login() {
           ))}
         </div>
       </div>
+
 
       {/* DECORATIVE ELEMENTS — hidden on small screens */}
       <div className="absolute inset-0 pointer-events-none hidden md:block">
