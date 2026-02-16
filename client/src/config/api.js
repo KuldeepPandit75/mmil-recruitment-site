@@ -6,6 +6,7 @@ export const API_ENDPOINTS = {
   LOGOUT: `${API_BASE_URL}/api/auth/logout`,
   REGISTER: `${API_BASE_URL}/api/auth/register`,
   GOOGLE_AUTH: `${API_BASE_URL}/api/auth/google`,
+  CHECK_STATUS: `${API_BASE_URL}/api/auth/check-status`,
 
   // Chat endpoints
   CHAT: `${API_BASE_URL}/api/chat/chat`,
