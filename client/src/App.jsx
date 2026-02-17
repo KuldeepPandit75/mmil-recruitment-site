@@ -1,19 +1,27 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./Login";
-import Register from "./Register";
-import ChatBox from "./ChatBox";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+// Import your pages
+import FirstPage from './pages/FirstPage';
+import ResultsPage from './pages/Result';
+
+// Global Styles
+import './App.css';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/chat" element={<ChatBox />} />
-      </Routes>
-    </BrowserRouter>
+    <Router>
+      <div className="App">
+        <Routes>
+          /* This is your landing page with the robot */
+          <Route path="/" element={<FirstPage />} />
+
+          /* This is the page with the 4 result categories */
+          <Route path="/results" element={<ResultsPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
 export default App;
-
