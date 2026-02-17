@@ -32,8 +32,7 @@ app.use("/api/chat",chatbotRouter)
 app.use("/api/profile", profileRouter);
 
 // Admin routes
-// app.use("/api/admin", adminRouter);
-app.use("/api/admin/applications", applicationsRouter);
+app.use("/api/admin", applicationsRouter);  
 
 // Domain routes
 app.use("/api/webdev", webDevRouter);
