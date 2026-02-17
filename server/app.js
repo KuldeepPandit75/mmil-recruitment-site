@@ -18,7 +18,7 @@ import applicationsRouter from "./routes/applicationsRoute.js";
 const app = express();
 
 app.use(cors({
-  origin: ENV.ALLOWED_ORIGINS
+  origin: ["https://mmil.club", "http://www.mmil.club", "https://mmil-recruitment.vercel.app"]
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
