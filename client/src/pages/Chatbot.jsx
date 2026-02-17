@@ -93,12 +93,24 @@ function Chatbot() {
         formData.append("resume", resumeFile);
         formData.append("userId", userId);
 
+        // First upload (to chat/disk)
         res = await axios.post(API_ENDPOINTS.UPLOAD_RESUME, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
+
+        // Second upload (to profile/mongo) - Fire and forget or handle separately
+        try {
+          await axios.post(API_ENDPOINTS.UPLOAD_RESUME2, formData, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          });
+        } catch (error) {
+          console.error("Secondary resume upload failed:", error);
+        }
 
         setMessages((prev) => [
           ...prev,
@@ -201,20 +213,20 @@ function Chatbot() {
           />
         </div>
         {/* 3. DECORATIVE ELEMENTS  */}
-      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 pointer-events-none">
         <div className="absolute flex flex-col items-center" style={{ top: "143px", right: "calc(50% - 620px)" }}>
           <img src="/light-bulb 1.png" alt="Bulb" className="w-[110px] h-auto object-contain z-20" />
-          <div className="absolute top-[110px] right-[8%] z-0">
+            <div className="absolute top-[110px] right-[8%] z-0">
             <img src="/Vector 1.png" alt="Line Decoration" style={{ width: "375px", height: "210px" }} />
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* 5. STAR DECORATIONS */}
-      <div className="absolute inset-0 pointer-events-none">
+        {/* 5. STAR DECORATIONS */}
+        <div className="absolute inset-0 pointer-events-none">
         <img src="/Vector 2.png" alt="Star" className="absolute w-[80px] h-auto " style={{ top: "80px", left: "calc(50% - 430px)", filter: "sepia(1) saturate(5) hue-rotate(-30deg)" }} />
         <img src="/Vector 2.png" alt="Star" className="absolute w-[80px] h-auto" style={{ top: "640px", left: "calc(50% - -360px)", filter: "sepia(1) saturate(5) hue-rotate(-30deg)" }} />
-      </div>
+        </div>
         <div className="w-full max-w-3xl flex-1 flex flex-col min-h-0 bg-[#FFE0D4] rounded-lg shadow-lg overflow-hidden my-[10vh]">
           <div className="bg-[#72341E] text-white p-4">
             <h2 className="text-xl font-bold">MMIL Recruitment Assistant</h2>

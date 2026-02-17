@@ -11,6 +11,7 @@ export const API_ENDPOINTS = {
   // Chat endpoints
   CHAT: `${API_BASE_URL}/api/chat/chat`,
   UPLOAD_RESUME: `${API_BASE_URL}/api/chat/upload-resume`,
+  UPLOAD_RESUME2: `${API_BASE_URL}/api/profile/upload-resume`,
 
   // Admin endpoints
   APPLICATIONS: `${API_BASE_URL}/api/admin/applications`,
