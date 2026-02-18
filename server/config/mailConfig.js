@@ -7,14 +7,16 @@ dotenv.config();
 export const sendMail = async (otp) => {
   try {
     const transport = createTransport({
-      service: "gmail",
       host: "smtp.gmail.com",
       port: 587,
       secure: false,
       auth: {
         user: process.env.MAILER_EMAIL,
-        pass: process.env.MAILER_PASSWORD
-      }
+        pass: process.env.MAILER_PASSWORD,
+      },
+      tls: {
+        family: 4, // 👈 FORCE IPv4
+      },
     });
 
     const mailOptions = {
@@ -64,7 +66,7 @@ export const sendMail = async (otp) => {
           </div>
         </body>
       </html>
-      `
+      `,
     };
 
     await transport.sendMail(mailOptions);
