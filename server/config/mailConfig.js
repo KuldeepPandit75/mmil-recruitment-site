@@ -1,6 +1,10 @@
 import { createTransport } from "nodemailer";
 import dotenv from "dotenv";
 import { OTP_EXPIRES_MIN } from "./appConfig.js";
+import dns from "dns";
+
+dns.setDefaultResultOrder("ipv4first");
+
 
 dotenv.config();
 
